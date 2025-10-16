@@ -6,7 +6,8 @@ import RoleCard from '../components/RoleCard.jsx';
 import ShopperForm from '../features/shopper/ShopperForm.jsx';
 
 export default function RoleSelection() {
-  const [selectedRole, setSelectedRole] = useState('Shopper');
+  const [selectedRole, setSelectedRole] = useState(null);
+  const [hasContinued, setHasContinued] = useState(false);
   const [shopperForm, setShopperForm] = useState({
     name: '',
     address: '',
@@ -62,7 +63,7 @@ export default function RoleSelection() {
           Select Your Role
         </h1>
 
-        {/* Role Cards */}
+        {/* Role Cards (always visible) */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 mb-12">
           {roles.map((role) => (
             <RoleCard
@@ -71,13 +72,16 @@ export default function RoleSelection() {
               label={role.label}
               Icon={role.icon}
               isSelected={selectedRole === role.id}
-              onClick={() => setSelectedRole(role.id)}
+              onClick={() => {
+                setSelectedRole(role.id);
+                setHasContinued(false);
+              }}
             />
           ))}
         </div>
 
-        {/* Shopper Form (shown only when Shopper is selected) */}
-        {selectedRole === 'Shopper' && (
+        {/* Shopper Form (only after Continue on Shopper) */}
+        {hasContinued && selectedRole === 'Shopper' && (
           <ShopperForm
             values={shopperForm}
             onChange={updateShopperField}
@@ -86,12 +90,29 @@ export default function RoleSelection() {
           />
         )}
 
-        {selectedRole !== 'Shopper' && (
+        {/* Home / Continue buttons appear after any role click, before Continue */}
+        {selectedRole && !hasContinued && (
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-            <button className="w-full sm:w-auto px-8 sm:px-12 py-3 border-2 border-[#285A8C] text-[#285A8C] rounded-lg font-medium hover:bg-blue-50 transition-colors">
+            <button
+              className="w-full sm:w-auto px-8 sm:px-12 py-3 border-2 border-[#285A8C] text-[#285A8C] rounded-lg font-medium hover:bg-blue-50 transition-colors"
+              onClick={() => {
+                setSelectedRole(null);
+                setHasContinued(false);
+                resetShopperForm();
+              }}
+            >
               Home
             </button>
-            <button className="w-full sm:w-auto px-8 sm:px-12 py-3 bg-[#285A8C] text-white rounded-lg font-medium hover:bg-[#234E79] transition-colors">
+            <button
+              className="w-full sm:w-auto px-8 sm:px-12 py-3 rounded-lg font-medium transition-colors text-white bg-[#285A8C] hover:bg-[#234E79]"
+              aria-disabled={selectedRole !== 'Shopper'}
+              title={selectedRole !== 'Shopper' ? 'Select Shopper to continue' : undefined}
+              onClick={() => {
+                if (selectedRole === 'Shopper') {
+                  setHasContinued(true);
+                }
+              }}
+            >
               Continue
             </button>
           </div>
