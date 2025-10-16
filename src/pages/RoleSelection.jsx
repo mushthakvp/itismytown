@@ -8,6 +8,7 @@ import ShopperForm from '../features/shopper/ShopperForm.jsx';
 export default function RoleSelection() {
   const [selectedRole, setSelectedRole] = useState(null);
   const [hasContinued, setHasContinued] = useState(false);
+  const [shopperErrors, setShopperErrors] = useState({});
   const [shopperForm, setShopperForm] = useState({
     name: '',
     address: '',
@@ -42,6 +43,41 @@ export default function RoleSelection() {
       confirmPassword: '',
       agree: false,
     });
+    setShopperErrors({});
+  };
+
+  const validateShopper = () => {
+    const errors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const postalRegex = /^[0-9]{4,10}$/;
+    const mobileRegex = /^[0-9]{7,15}$/;
+
+    if (!shopperForm.name.trim()) errors.name = 'Name is required';
+    if (!shopperForm.email.trim()) errors.email = 'Email is required';
+    else if (!emailRegex.test(shopperForm.email)) errors.email = 'Enter a valid email';
+
+    if (!shopperForm.address.trim()) errors.address = 'Address is required';
+    if (!shopperForm.city.trim()) errors.city = 'City is required';
+    if (!shopperForm.town.trim()) errors.town = 'Town is required';
+    if (!shopperForm.state.trim()) errors.state = 'State is required';
+    if (!shopperForm.country.trim()) errors.country = 'Country is required';
+
+    if (!shopperForm.postalCode.trim()) errors.postalCode = 'Postal code is required';
+    else if (!postalRegex.test(shopperForm.postalCode)) errors.postalCode = 'Enter a valid postal code';
+
+    if (!shopperForm.mobile.trim()) errors.mobile = 'Mobile number is required';
+    else if (!mobileRegex.test(shopperForm.mobile)) errors.mobile = 'Enter a valid mobile number';
+
+    if (!shopperForm.password) errors.password = 'Password is required';
+    else if (shopperForm.password.length < 6) errors.password = 'Password must be at least 6 characters';
+
+    if (!shopperForm.confirmPassword) errors.confirmPassword = 'Confirm your password';
+    else if (shopperForm.confirmPassword !== shopperForm.password) errors.confirmPassword = 'Passwords do not match';
+
+    if (!shopperForm.agree) errors.agree = 'You must agree to continue';
+
+    setShopperErrors(errors);
+    return Object.keys(errors).length === 0;
   };
 
   const roles = [
@@ -84,9 +120,20 @@ export default function RoleSelection() {
         {hasContinued && selectedRole === 'Shopper' && (
           <ShopperForm
             values={shopperForm}
+            errors={shopperErrors}
             onChange={updateShopperField}
             onReset={resetShopperForm}
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (!validateShopper()) {
+                return;
+              }
+              // Simulate successful submit: return to home (role grid)
+              resetShopperForm();
+              setSelectedRole(null);
+              setHasContinued(false);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
           />
         )}
 
