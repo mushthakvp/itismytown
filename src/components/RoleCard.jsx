@@ -14,7 +14,10 @@ export default function RoleCard({ id, label, Icon, isSelected, onClick }) {
           isSelected ? 'bg-[#105617]' : 'bg-gray-100'
         }`}
       >
-        <Icon className={`w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 ${isSelected ? 'text-white' : 'text-gray-600'}`} />
+        <Icon 
+          className={`w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 ${isSelected ? 'text-white' : 'text-gray-600'}`} 
+          filled={isSelected}
+        />
       </div>
       <span className="text-sm sm:text-base md:text-lg font-medium text-gray-900 text-center">{label}</span>
     </button>
