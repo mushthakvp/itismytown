@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import BusinessOwnerIcon from '../icons/BusinessOwnerIcon.jsx';
 import ShopperIcon from '../icons/ShopperIcon.jsx';
 import SenderIcon from '../icons/SenderIcon.jsx';
@@ -7,10 +6,105 @@ import TransporterIcon from '../icons/TransporterIcon.jsx';
 import CourierIcon from '../icons/CourierIcon.jsx';
 import AppHeader from '../components/AppHeader.jsx';
 import RoleCard from '../components/RoleCard.jsx';
+import ShopperForm from '../features/shopper/ShopperForm.jsx';
+import SuccessModal from '../components/SuccessModal.jsx';
+import { getDefaultCountry } from '../constants/countries.js';
+import { validateForm, hasErrors } from '../utils/validation.js';
 
 export default function RoleSelection() {
-  const navigate = useNavigate();
   const [selectedRole, setSelectedRole] = useState(null);
+  const [hasContinued, setHasContinued] = useState(false);
+  const [shopperErrors, setShopperErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const defaultCountry = getDefaultCountry();
+  const [shopperForm, setShopperForm] = useState({
+    name: '',
+    address: '',
+    email: '',
+    town: '',
+    city: '',
+    state: '',
+    country: defaultCountry.name,
+    postalCode: '',
+    mobile: '',
+    selectedCountry: defaultCountry,
+    password: '',
+    confirmPassword: '',
+    agree: false,
+  });
+
+  const updateShopperField = (field, value) => {
+    setShopperForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const resetShopperForm = () => {
+    const defaultCountry = getDefaultCountry();
+    setShopperForm({
+      name: '',
+      address: '',
+      email: '',
+      town: '',
+      city: '',
+      state: '',
+      country: defaultCountry.name,
+      postalCode: '',
+      mobile: '',
+      selectedCountry: defaultCountry,
+      password: '',
+      confirmPassword: '',
+      agree: false,
+    });
+    setShopperErrors({});
+  };
+
+  const validateAndSubmit = async () => {
+    // Clear previous errors
+    setShopperErrors({});
+    
+    // Validate form
+    const errors = validateForm(shopperForm);
+    
+    if (hasErrors(errors)) {
+      setShopperErrors(errors);
+      // Scroll to first error field
+      const firstErrorField = Object.keys(errors)[0];
+      const errorElement = document.querySelector(`[aria-describedby="${firstErrorField}-error"]`);
+      if (errorElement) {
+        errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        errorElement.focus();
+      }
+      return;
+    }
+
+    // If validation passes, proceed with submission
+    setIsSubmitting(true);
+    
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Show success modal
+      setShowSuccessModal(true);
+      
+      // Reset form after successful submission
+      setTimeout(() => {
+        resetShopperForm();
+        setSelectedRole(null);
+        setHasContinued(false);
+        setIsSubmitting(false);
+      }, 1000);
+      
+    } catch (error) {
+      console.error('Submission error:', error);
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    validateAndSubmit();
+  };
 
   const roles = [
     { id: 'Business Owner', icon: BusinessOwnerIcon, label: 'Business Owner' },
@@ -42,13 +136,14 @@ export default function RoleSelection() {
               isSelected={selectedRole === role.id}
               onClick={() => {
                 setSelectedRole(role.id);
+                setHasContinued(false);
               }}
             />
           ))}
         </div>
 
-        {/* Home / Continue buttons appear after any role click */}
-        {selectedRole && (
+        {/* Home / Continue buttons appear after any role click, but hide when form is shown */}
+        {selectedRole && !hasContinued && (
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             <button
               className="w-full sm:w-auto px-8 sm:px-12 py-3 border-2 border-[#285A8C] text-[#285A8C] rounded-lg font-medium hover:bg-blue-50 transition-colors"
@@ -64,7 +159,7 @@ export default function RoleSelection() {
               title={selectedRole !== 'Shopper' ? 'Select Shopper to continue' : undefined}
               onClick={() => {
                 if (selectedRole === 'Shopper') {
-                  navigate('/shopper-registration');
+                  setHasContinued(true);
                 }
               }}
             >
@@ -72,7 +167,29 @@ export default function RoleSelection() {
             </button>
           </div>
         )}
+
+        {/* Shopper Form appears below role selection when continued */}
+        {hasContinued && selectedRole === 'Shopper' && (
+          <div className="mt-12">
+            <ShopperForm
+              values={shopperForm}
+              errors={shopperErrors}
+              onChange={updateShopperField}
+              onSubmit={handleSubmit}
+              onReset={resetShopperForm}
+              isSubmitting={isSubmitting}
+            />
+          </div>
+        )}
       </main>
+
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <SuccessModal
+          isOpen={showSuccessModal}
+          onClose={() => setShowSuccessModal(false)}
+        />
+      )}
     </div>
   );
 }

@@ -161,7 +161,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
 
           <label className="flex items-start gap-2 text-sm text-gray-700">
             <input checked={values.agree} onChange={(e) => onChange('agree', e.target.checked)} type="checkbox" className={`mt-1 h-4 w-4 rounded border ${errors.agree ? 'border-red-500 text-red-600 focus:ring-red-600' : 'border-gray-300 text-blue-600 focus:ring-blue-600'}`} aria-invalid={!!errors.agree} aria-describedby={errors.agree ? 'agree-error' : undefined} />
-            <span>I Agree Terms & Conditions and Privacy Policy</span>
+            <span>I Agree <a href="#" className="text-green-600 hover:text-green-800 underline">Terms & Conditions</a> and <a href="#" className="text-green-600 hover:text-green-800 underline">Privacy Policy</a></span>
           </label>
           {errors.agree && <p id="agree-error" className="-mt-2 text-sm text-red-600">{errors.agree}</p>}
 
@@ -170,7 +170,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
               type="button" 
               onClick={onReset} 
               disabled={isSubmitting}
-              className="w-full sm:w-auto px-8 sm:px-12 py-3 rounded-lg border border-[#285A8C] text-[#285A8C] bg-white hover:bg-blue-50 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full sm:w-auto px-8 sm:px-12 py-3 rounded-lg border border-green-600 text-green-700 bg-white hover:bg-green-50 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Reset
             </button>
