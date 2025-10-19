@@ -7,13 +7,13 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   return (
-    <div className="mx-auto mt-4 sm:mt-6 md:mt-8 w-full max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-4xl xl:max-w-5xl px-2 sm:px-4 md:px-6 lg:px-8">
-      <div className="bg-white rounded-xl sm:rounded-2xl shadow-sm border border-gray-200 p-3 sm:p-4 md:p-6 lg:p-8">
+    <div className="mx-auto mt-4 sm:mt-6 md:mt-8 w-full max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-4xl xl:max-w-5xl px-1 sm:px-4 md:px-6 lg:px-8">
+      <div className="bg-white rounded-xl sm:rounded-2xl shadow-sm border border-gray-200 p-2 sm:p-4 md:p-6 lg:p-8">
         <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-center text-gray-800 mb-3 sm:mb-4 md:mb-6">
           Create a Shopper Account
         </h2>
 
-        <form onSubmit={onSubmit} className="space-y-3 sm:space-y-4 md:space-y-5 text-left">
+        <form onSubmit={onSubmit} className="space-y-2 sm:space-y-4 md:space-y-5 text-left">
           {/* Full Name Field - Full Width */}
           <div>
             <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Full Name*</label>
@@ -30,7 +30,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
           </div>
 
           {/* Other Fields - Responsive Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 md:gap-5">
             <div>
               <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Email ID*</label>
               <input 
@@ -221,7 +221,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
           </label>
           {errors.agree && <p id="agree-error" className="-mt-2 text-xs sm:text-sm text-red-600">{errors.agree}</p>}
 
-          <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-3 md:gap-4 pt-2 sm:pt-3">
+          <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-3 md:gap-4 pt-1 sm:pt-3">
             <button 
               type="button" 
               onClick={onReset} 
