@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { countries } from '../constants/countries.js';
 
-export default function CountrySelector({ selectedCountry, onCountryChange, className = "" }) {
+export default function CountrySelector({ selectedCountry, onCountryChange, onBlur, className = "" }) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const dropdownRef = useRef(null);
@@ -30,6 +30,16 @@ export default function CountrySelector({ selectedCountry, onCountryChange, clas
     onCountryChange(country);
     setIsOpen(false);
     setSearchTerm('');
+    // Trigger onBlur when country is selected
+    if (onBlur) {
+      onBlur('selectedCountry', country);
+    }
+  };
+
+  const handleBlur = () => {
+    if (onBlur) {
+      onBlur('selectedCountry', selectedCountry);
+    }
   };
 
   return (
@@ -37,7 +47,8 @@ export default function CountrySelector({ selectedCountry, onCountryChange, clas
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 text-left bg-white hover:border-gray-400 transition-colors"
+        onBlur={handleBlur}
+        className="w-full px-4 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 text-left bg-white hover:border-gray-400 transition-colors"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1 sm:gap-2">

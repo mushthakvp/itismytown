@@ -4,7 +4,7 @@ import AppHeader from '../components/AppHeader.jsx';
 import ShopperForm from '../features/shopper/ShopperForm.jsx';
 import SuccessModal from '../components/SuccessModal.jsx';
 import { getDefaultCountry } from '../constants/countries.js';
-import { validateForm, hasErrors } from '../utils/validation.js';
+import { validateForm, hasErrors, validateName, validateEmail, validateAddress, validateCity, validateTown, validateState, validateCountry, validatePostalCode, validateMobile, validatePassword, validateConfirmPassword, validateAgree } from '../utils/validation.js';
 
 export default function ShopperRegistration() {
   const navigate = useNavigate();
@@ -30,6 +30,61 @@ export default function ShopperRegistration() {
 
   const updateShopperField = (field, value) => {
     setShopperForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const validateField = (field, value) => {
+    let error = '';
+    
+    switch (field) {
+      case 'name':
+        error = validateName(value);
+        break;
+      case 'email':
+        error = validateEmail(value);
+        break;
+      case 'address':
+        error = validateAddress(value);
+        break;
+      case 'city':
+        error = validateCity(value);
+        break;
+      case 'town':
+        error = validateTown(value);
+        break;
+      case 'state':
+        error = validateState(value);
+        break;
+      case 'selectedCountry':
+        error = validateCountry(value);
+        break;
+      case 'postalCode':
+        error = validatePostalCode(value);
+        break;
+      case 'mobile':
+        error = validateMobile(value, shopperForm.selectedCountry);
+        break;
+      case 'password':
+        error = validatePassword(value);
+        break;
+      case 'confirmPassword':
+        error = validateConfirmPassword(value, shopperForm.password);
+        break;
+      case 'agree':
+        error = validateAgree(value);
+        break;
+      default:
+        break;
+    }
+    
+    // Update errors state
+    setShopperErrors((prev) => ({
+      ...prev,
+      [field]: error || undefined
+    }));
+  };
+
+  const handleFieldBlur = (field, value) => {
+    validateField(field, value);
   };
 
   const resetShopperForm = () => {
@@ -124,6 +179,7 @@ export default function ShopperRegistration() {
           values={shopperForm}
           errors={shopperErrors}
           onChange={updateShopperField}
+          onBlur={handleFieldBlur}
           onReset={resetShopperForm}
           onSubmit={handleSubmit}
           isSubmitting={isSubmitting}

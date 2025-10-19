@@ -3,7 +3,7 @@ import { useState } from 'react';
 import CountrySelector from '../../components/CountrySelector.jsx';
 import { getDefaultCountry } from '../../constants/countries.js';
 
-export default function ShopperForm({ values, errors = {}, onChange, onReset, onSubmit, isSubmitting = false }) {
+export default function ShopperForm({ values, errors = {}, onChange, onBlur, onReset, onSubmit, isSubmitting = false }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   return (
@@ -20,9 +20,10 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
             <input 
               value={values.name} 
               onChange={(e) => onChange('name', e.target.value)} 
+              onBlur={(e) => onBlur && onBlur('name', e.target.value)} 
               type="text" 
               placeholder="Enter your full name" 
-              className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.name ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
+              className={`w-full px-4 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.name ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
               aria-invalid={!!errors.name} 
               aria-describedby={errors.name ? 'name-error' : undefined} 
             />
@@ -36,9 +37,10 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
               <input 
                 value={values.email} 
                 onChange={(e) => onChange('email', e.target.value)} 
+                onBlur={(e) => onBlur && onBlur('email', e.target.value)} 
                 type="email" 
                 placeholder="Enter your email ID" 
-                className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.email ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
+                  className={`w-full px-4 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.email ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
                 aria-invalid={!!errors.email} 
                 aria-describedby={errors.email ? 'email-error' : undefined} 
               />
@@ -50,9 +52,10 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
               <input 
                 value={values.address} 
                 onChange={(e) => onChange('address', e.target.value)} 
+                onBlur={(e) => onBlur && onBlur('address', e.target.value)} 
                 type="text" 
                 placeholder="Enter your address" 
-                className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.address ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
+                  className={`w-full px-4 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.address ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
                 aria-invalid={!!errors.address} 
                 aria-describedby={errors.address ? 'address-error' : undefined} 
               />
@@ -63,9 +66,10 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
               <input 
                 value={values.city} 
                 onChange={(e) => onChange('city', e.target.value)} 
+                onBlur={(e) => onBlur && onBlur('city', e.target.value)} 
                 type="text" 
                 placeholder="Enter your city" 
-                className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.city ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
+                  className={`w-full px-4 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.city ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
                 aria-invalid={!!errors.city} 
                 aria-describedby={errors.city ? 'city-error' : undefined} 
               />
@@ -77,9 +81,10 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
               <input 
                 value={values.town} 
                 onChange={(e) => onChange('town', e.target.value)} 
+                onBlur={(e) => onBlur && onBlur('town', e.target.value)} 
                 type="text" 
                 placeholder="Enter your town" 
-                className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.town ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
+                  className={`w-full px-4 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.town ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
                 aria-invalid={!!errors.town} 
                 aria-describedby={errors.town ? 'town-error' : undefined} 
               />
@@ -90,9 +95,10 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
               <input 
                 value={values.state} 
                 onChange={(e) => onChange('state', e.target.value)} 
+                onBlur={(e) => onBlur && onBlur('state', e.target.value)} 
                 type="text" 
                 placeholder="Enter your State" 
-                className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.state ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
+                  className={`w-full px-4 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.state ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
                 aria-invalid={!!errors.state} 
                 aria-describedby={errors.state ? 'state-error' : undefined} 
               />
@@ -104,9 +110,10 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
               <input 
                 value={values.postalCode} 
                 onChange={(e) => onChange('postalCode', e.target.value)} 
+                onBlur={(e) => onBlur && onBlur('postalCode', e.target.value)} 
                 type="text" 
                 placeholder="395007" 
-                className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.postalCode ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
+                  className={`w-full px-4 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.postalCode ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
                 aria-invalid={!!errors.postalCode} 
                 aria-describedby={errors.postalCode ? 'postal-error' : undefined} 
               />
@@ -122,6 +129,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
                   // Clear mobile number when country changes to avoid format conflicts
                   onChange('mobile', '');
                 }}
+                onBlur={onBlur}
               />
               {errors.country && <p id="country-error" className="mt-1 text-xs sm:text-sm text-red-600">{errors.country}</p>}
             </div>
@@ -136,11 +144,12 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
                 <input 
                   value={values.mobile} 
                   onChange={(e) => onChange('mobile', e.target.value)} 
+                  onBlur={(e) => onBlur && onBlur('mobile', e.target.value)} 
                   type="tel" 
                   placeholder={(values.selectedCountry || getDefaultCountry()).code === 'IN' ? "97854 42580" : "Enter mobile number"} 
-                  className={`w-full pr-2 sm:pr-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.mobile ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
+                  className={`w-full pr-4 sm:pr-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.mobile ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
                   style={{ 
-                    paddingLeft: `${window.innerWidth < 640 ? 8 + 16 + 4 + ((values.selectedCountry || getDefaultCountry()).dialCode.length * 6) + 4 : 12 + 20 + 8 + ((values.selectedCountry || getDefaultCountry()).dialCode.length * 8) + 8}px` 
+                    paddingLeft: `${window.innerWidth < 640 ? 16 + 16 + 4 + ((values.selectedCountry || getDefaultCountry()).dialCode.length * 6) + 4 : 12 + 20 + 8 + ((values.selectedCountry || getDefaultCountry()).dialCode.length * 8) + 8}px` 
                   }}
                   aria-invalid={!!errors.mobile} 
                   aria-describedby={errors.mobile ? 'mobile-error' : undefined} 
@@ -155,9 +164,10 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
                 <input 
                   value={values.password} 
                   onChange={(e) => onChange('password', e.target.value)} 
+                  onBlur={(e) => onBlur && onBlur('password', e.target.value)} 
                   type={showPassword ? "text" : "password"} 
                   placeholder="Create a secure password" 
-                  className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 pr-8 sm:pr-10 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.password ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
+                  className={`w-full px-4 sm:px-3 py-2 sm:py-2.5 pr-8 sm:pr-10 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.password ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
                   aria-invalid={!!errors.password} 
                   aria-describedby={errors.password ? 'password-error' : undefined} 
                 />
@@ -187,9 +197,10 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
                 <input 
                   value={values.confirmPassword} 
                   onChange={(e) => onChange('confirmPassword', e.target.value)} 
+                  onBlur={(e) => onBlur && onBlur('confirmPassword', e.target.value)} 
                   type={showConfirmPassword ? "text" : "password"} 
                   placeholder="Re-enter your password" 
-                  className={`w-full px-2 sm:px-3 py-2 sm:py-2.5 pr-8 sm:pr-10 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.confirmPassword ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
+                  className={`w-full px-4 sm:px-3 py-2 sm:py-2.5 pr-8 sm:pr-10 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.confirmPassword ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
                   aria-invalid={!!errors.confirmPassword} 
                   aria-describedby={errors.confirmPassword ? 'confirmPassword-error' : undefined} 
                 />
@@ -216,7 +227,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onReset, on
           </div>
 
           <label className="flex items-start gap-2 text-xs sm:text-sm text-gray-700">
-            <input checked={values.agree} onChange={(e) => onChange('agree', e.target.checked)} type="checkbox" className={`mt-1 h-3 w-3 sm:h-4 sm:w-4 rounded border ${errors.agree ? 'border-red-500 text-red-600 focus:ring-red-600' : 'border-gray-300 text-blue-600 focus:ring-blue-600'}`} aria-invalid={!!errors.agree} aria-describedby={errors.agree ? 'agree-error' : undefined} />
+            <input checked={values.agree} onChange={(e) => onChange('agree', e.target.checked)} onBlur={(e) => onBlur && onBlur('agree', e.target.checked)} type="checkbox" className={`mt-1 h-3 w-3 sm:h-4 sm:w-4 rounded border ${errors.agree ? 'border-red-500 text-red-600 focus:ring-red-600' : 'border-gray-300 text-blue-600 focus:ring-blue-600'}`} aria-invalid={!!errors.agree} aria-describedby={errors.agree ? 'agree-error' : undefined} />
             <span>I Agree <a href="#" className="text-green-600 hover:text-green-800 underline text-xs sm:text-sm">Terms & Conditions</a> and <a href="#" className="text-green-600 hover:text-green-800 underline text-xs sm:text-sm">Privacy Policy</a></span>
           </label>
           {errors.agree && <p id="agree-error" className="-mt-2 text-xs sm:text-sm text-red-600">{errors.agree}</p>}

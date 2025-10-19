@@ -107,3 +107,128 @@ export const validateForm = (formData) => {
 export const hasErrors = (errors) => {
   return Object.keys(errors).length > 0;
 };
+
+// Individual field validation functions for real-time validation
+export const validateName = (name) => {
+  if (!name?.trim()) {
+    return 'Name is required';
+  } else if (name.trim().length < 2) {
+    return 'Name must be at least 2 characters';
+  } else if (!/^[a-zA-Z\s]+$/.test(name.trim())) {
+    return 'Name can only contain letters and spaces';
+  }
+  return '';
+};
+
+export const validateEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email?.trim()) {
+    return 'Email is required';
+  } else if (!emailRegex.test(email)) {
+    return 'Enter a valid email address';
+  }
+  return '';
+};
+
+export const validateAddress = (address) => {
+  if (!address?.trim()) {
+    return 'Address is required';
+  } else if (address.trim().length < 5) {
+    return 'Address must be at least 5 characters';
+  }
+  return '';
+};
+
+export const validateCity = (city) => {
+  if (!city?.trim()) {
+    return 'City is required';
+  } else if (city.trim().length < 2) {
+    return 'City must be at least 2 characters';
+  }
+  return '';
+};
+
+export const validateTown = (town) => {
+  if (!town?.trim()) {
+    return 'Town is required';
+  } else if (town.trim().length < 2) {
+    return 'Town must be at least 2 characters';
+  }
+  return '';
+};
+
+export const validateState = (state) => {
+  if (!state?.trim()) {
+    return 'State is required';
+  } else if (state.trim().length < 2) {
+    return 'State must be at least 2 characters';
+  }
+  return '';
+};
+
+export const validateCountry = (selectedCountry) => {
+  if (!selectedCountry || !selectedCountry.name) {
+    return 'Country is required';
+  }
+  return '';
+};
+
+export const validatePostalCode = (postalCode) => {
+  if (!postalCode?.trim()) {
+    return 'Postal code is required';
+  } else {
+    const postalRegex = /^[0-9]{4,10}$/;
+    if (!postalRegex.test(postalCode)) {
+      return 'Enter a valid postal code (4-10 digits)';
+    }
+  }
+  return '';
+};
+
+export const validateMobile = (mobile, selectedCountry) => {
+  if (!mobile?.trim()) {
+    return 'Mobile number is required';
+  } else if (selectedCountry && selectedCountry.phoneRegex) {
+    if (!selectedCountry.phoneRegex.test(mobile)) {
+      return `Enter a valid ${selectedCountry.name} mobile number`;
+    }
+  } else {
+    // Fallback validation
+    const mobileRegex = /^[0-9]{7,15}$/;
+    if (!mobileRegex.test(mobile)) {
+      return 'Enter a valid mobile number';
+    }
+  }
+  return '';
+};
+
+export const validatePassword = (password) => {
+  if (!password) {
+    return 'Password is required';
+  } else if (password.length < 6) {
+    return 'Password must be at least 6 characters';
+  } else if (!/(?=.*[a-z])/.test(password)) {
+    return 'Password must contain at least one lowercase letter';
+  } else if (!/(?=.*[A-Z])/.test(password)) {
+    return 'Password must contain at least one uppercase letter';
+  } else if (!/(?=.*\d)/.test(password)) {
+    return 'Password must contain at least one number';
+  }
+  return '';
+};
+
+export const validateConfirmPassword = (confirmPassword, password) => {
+  if (!confirmPassword) {
+    return 'Confirm your password';
+  } else if (confirmPassword !== password) {
+    return 'Passwords do not match';
+  }
+  return '';
+};
+
+export const validateAgree = (agree) => {
+  if (!agree) {
+    return 'You must agree to the Terms & Conditions and Privacy Policy to continue';
+  }
+  return '';
+};
