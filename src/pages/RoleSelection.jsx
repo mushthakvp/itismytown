@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Send, Truck, Package } from 'lucide-react';
 import BusinessOwnerIcon from '../icons/BusinessOwnerIcon.jsx';
 import ShopperIcon from '../icons/ShopperIcon.jsx';
+import SenderIcon from '../icons/SenderIcon.jsx';
+import TransporterIcon from '../icons/TransporterIcon.jsx';
+import CourierIcon from '../icons/CourierIcon.jsx';
 import AppHeader from '../components/AppHeader.jsx';
 import RoleCard from '../components/RoleCard.jsx';
 
@@ -13,9 +15,9 @@ export default function RoleSelection() {
   const roles = [
     { id: 'Business Owner', icon: BusinessOwnerIcon, label: 'Business Owner' },
     { id: 'Shopper', icon: ShopperIcon, label: 'Shopper' },
-    { id: 'Sender', icon: Send, label: 'Sender' },
-    { id: 'Transporter', icon: Truck, label: 'Transporter' },
-    { id: 'Courier', icon: Package, label: 'Courier' }
+    { id: 'Sender', icon: SenderIcon, label: 'Sender' },
+    { id: 'Transporter', icon: TransporterIcon, label: 'Transporter' },
+    { id: 'Courier', icon: CourierIcon, label: 'Courier' }
   ];
 
   return (
