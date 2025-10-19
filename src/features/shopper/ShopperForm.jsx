@@ -7,8 +7,8 @@ export default function ShopperForm({ values, errors = {}, onChange, onBlur, onR
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   return (
-    <div className="mx-auto mt-4 sm:mt-6 md:mt-8 w-full max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-4xl xl:max-w-5xl px-1 sm:px-4 md:px-6 lg:px-8">
-      <div className="bg-white rounded-xl sm:rounded-2xl shadow-sm border border-gray-200 p-2 sm:p-4 md:p-6 lg:p-8">
+    <div className="w-full">
+      <div className="bg-white rounded-xl sm:rounded-2xl shadow-sm border border-gray-200 p-4 sm:p-4 md:p-6 lg:p-8">
         <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-center text-gray-800 mb-3 sm:mb-4 md:mb-6">
           Create a Shopper Account
         </h2>
@@ -23,7 +23,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onBlur, onR
               onBlur={(e) => onBlur && onBlur('name', e.target.value)} 
               type="text" 
               placeholder="Enter your full name" 
-              className={`w-full px-0 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.name ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
+              className={`w-full px-3 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.name ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
               aria-invalid={!!errors.name} 
               aria-describedby={errors.name ? 'name-error' : undefined} 
             />
@@ -40,7 +40,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onBlur, onR
                 onBlur={(e) => onBlur && onBlur('email', e.target.value)} 
                 type="email" 
                 placeholder="Enter your email ID" 
-                  className={`w-full px-0 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.email ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
+                  className={`w-full px-3 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.email ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
                 aria-invalid={!!errors.email} 
                 aria-describedby={errors.email ? 'email-error' : undefined} 
               />
@@ -55,7 +55,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onBlur, onR
                 onBlur={(e) => onBlur && onBlur('address', e.target.value)} 
                 type="text" 
                 placeholder="Enter your address" 
-                  className={`w-full px-0 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.address ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
+                  className={`w-full px-3 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.address ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
                 aria-invalid={!!errors.address} 
                 aria-describedby={errors.address ? 'address-error' : undefined} 
               />
@@ -69,7 +69,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onBlur, onR
                 onBlur={(e) => onBlur && onBlur('city', e.target.value)} 
                 type="text" 
                 placeholder="Enter your city" 
-                  className={`w-full px-0 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.city ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
+                  className={`w-full px-3 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.city ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
                 aria-invalid={!!errors.city} 
                 aria-describedby={errors.city ? 'city-error' : undefined} 
               />
@@ -84,7 +84,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onBlur, onR
                 onBlur={(e) => onBlur && onBlur('town', e.target.value)} 
                 type="text" 
                 placeholder="Enter your town" 
-                  className={`w-full px-0 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.town ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
+                  className={`w-full px-3 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.town ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
                 aria-invalid={!!errors.town} 
                 aria-describedby={errors.town ? 'town-error' : undefined} 
               />
@@ -98,7 +98,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onBlur, onR
                 onBlur={(e) => onBlur && onBlur('state', e.target.value)} 
                 type="text" 
                 placeholder="Enter your State" 
-                  className={`w-full px-0 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.state ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
+                  className={`w-full px-3 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.state ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
                 aria-invalid={!!errors.state} 
                 aria-describedby={errors.state ? 'state-error' : undefined} 
               />
@@ -113,7 +113,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onBlur, onR
                 onBlur={(e) => onBlur && onBlur('postalCode', e.target.value)} 
                 type="text" 
                 placeholder="395007" 
-                  className={`w-full px-0 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.postalCode ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
+                  className={`w-full px-3 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.postalCode ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
                 aria-invalid={!!errors.postalCode} 
                 aria-describedby={errors.postalCode ? 'postal-error' : undefined} 
               />
@@ -147,9 +147,9 @@ export default function ShopperForm({ values, errors = {}, onChange, onBlur, onR
                   onBlur={(e) => onBlur && onBlur('mobile', e.target.value)} 
                   type="tel" 
                   placeholder={(values.selectedCountry || getDefaultCountry()).code === 'IN' ? "97854 42580" : "Enter mobile number"} 
-                  className={`w-full pr-0 sm:pr-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.mobile ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
+                  className={`w-full pr-3 sm:pr-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.mobile ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
                   style={{ 
-                    paddingLeft: `${window.innerWidth < 640 ? 0 : 12 + 20 + 8 + ((values.selectedCountry || getDefaultCountry()).dialCode.length * 8) + 8}px` 
+                    paddingLeft: `${window.innerWidth < 640 ? 12 + 16 + 4 + ((values.selectedCountry || getDefaultCountry()).dialCode.length * 6) + 4 : 12 + 20 + 8 + ((values.selectedCountry || getDefaultCountry()).dialCode.length * 8) + 8}px` 
                   }}
                   aria-invalid={!!errors.mobile} 
                   aria-describedby={errors.mobile ? 'mobile-error' : undefined} 
@@ -167,7 +167,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onBlur, onR
                   onBlur={(e) => onBlur && onBlur('password', e.target.value)} 
                   type={showPassword ? "text" : "password"} 
                   placeholder="Create a secure password" 
-                  className={`w-full px-0 sm:px-3 py-2 sm:py-2.5 pr-8 sm:pr-10 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.password ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
+                  className={`w-full px-3 sm:px-3 py-2 sm:py-2.5 pr-8 sm:pr-10 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.password ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
                   aria-invalid={!!errors.password} 
                   aria-describedby={errors.password ? 'password-error' : undefined} 
                 />
@@ -200,7 +200,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onBlur, onR
                   onBlur={(e) => onBlur && onBlur('confirmPassword', e.target.value)} 
                   type={showConfirmPassword ? "text" : "password"} 
                   placeholder="Re-enter your password" 
-                  className={`w-full px-0 sm:px-3 py-2 sm:py-2.5 pr-8 sm:pr-10 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.confirmPassword ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
+                  className={`w-full px-3 sm:px-3 py-2 sm:py-2.5 pr-8 sm:pr-10 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.confirmPassword ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`} 
                   aria-invalid={!!errors.confirmPassword} 
                   aria-describedby={errors.confirmPassword ? 'confirmPassword-error' : undefined} 
                 />

@@ -48,7 +48,7 @@ export default function CountrySelector({ selectedCountry, onCountryChange, onBl
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         onBlur={handleBlur}
-        className="w-full px-0 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 text-left bg-white hover:border-gray-400 transition-colors"
+        className="w-full px-3 sm:px-3 py-2 sm:py-2.5 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 text-left bg-white hover:border-gray-400 transition-colors"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1 sm:gap-2">
@@ -69,7 +69,7 @@ export default function CountrySelector({ selectedCountry, onCountryChange, onBl
               placeholder="Search countries..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-0 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               autoFocus
             />
           </div>
