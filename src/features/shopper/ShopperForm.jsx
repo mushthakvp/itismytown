@@ -7,7 +7,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onBlur, onR
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   return (
-    <div className="w-full">
+    <div className="w-full mx-auto max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-4xl xl:max-w-5xl">
       <div className="bg-white rounded-xl sm:rounded-2xl shadow-sm border border-gray-200 p-4 sm:p-4 md:p-6 lg:p-8">
         <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-center text-gray-800 mb-3 sm:mb-4 md:mb-6">
           Create a Shopper Account
