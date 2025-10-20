@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import CountrySelector from '../../components/CountrySelector.jsx';
+import FlagIcon from '../../components/FlagIcon.jsx';
 import { getDefaultCountry } from '../../constants/countries.js';
 
 export default function ShopperForm({ values, errors = {}, onChange, onBlur, onReset, onSubmit, isSubmitting = false }) {
@@ -138,7 +139,7 @@ export default function ShopperForm({ values, errors = {}, onChange, onBlur, onR
               <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">Mobile No*</label>
               <div className="relative">
                 <div className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 flex items-center gap-1 sm:gap-2 pointer-events-none">
-                  <span className="text-sm sm:text-lg">{(values.selectedCountry || getDefaultCountry()).flag}</span>
+                  <FlagIcon countryCode={(values.selectedCountry || getDefaultCountry()).code} size="sm" />
                   <span className="text-xs sm:text-sm text-gray-600">{(values.selectedCountry || getDefaultCountry()).dialCode}</span>
                 </div>
                 <input 

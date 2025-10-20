@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { countries } from '../constants/countries.js';
+import FlagIcon from './FlagIcon.jsx';
 
 export default function CountrySelector({ selectedCountry, onCountryChange, onBlur, className = "" }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +53,7 @@ export default function CountrySelector({ selectedCountry, onCountryChange, onBl
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1 sm:gap-2">
-            <span className="text-sm sm:text-lg">{selectedCountry.flag}</span>
+            <FlagIcon countryCode={selectedCountry.code} size="sm" />
             <span className="text-gray-900 font-medium text-xs sm:text-sm truncate">{selectedCountry.name}</span>
           </div>
           <svg className={`w-3 h-3 sm:w-4 sm:h-4 text-gray-500 transition-transform ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -83,7 +84,7 @@ export default function CountrySelector({ selectedCountry, onCountryChange, onBl
                   selectedCountry.code === country.code ? 'bg-blue-50 text-blue-700' : 'text-gray-700'
                 }`}
               >
-                <span className="text-sm sm:text-lg">{country.flag}</span>
+                <FlagIcon countryCode={country.code} size="sm" />
                 <span className="flex-1 text-xs sm:text-sm font-medium truncate">{country.name}</span>
                 <span className="text-xs sm:text-sm text-gray-500">{country.dialCode}</span>
               </button>
