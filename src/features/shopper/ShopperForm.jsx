@@ -142,19 +142,25 @@ export default function ShopperForm({ values, errors = {}, onChange, onBlur, onR
                   <FlagIcon countryCode={(values.selectedCountry || getDefaultCountry()).code} size="sm" />
                   <span className="text-xs sm:text-sm text-gray-600">{(values.selectedCountry || getDefaultCountry()).dialCode}</span>
                 </div>
-                <input 
-                  value={values.mobile} 
-                  onChange={(e) => onChange('mobile', e.target.value)} 
-                  onBlur={(e) => onBlur && onBlur('mobile', e.target.value)} 
-                  type="tel" 
-                  placeholder={(values.selectedCountry || getDefaultCountry()).code === 'IN' ? "97854 42580" : "Enter mobile number"} 
-                  className={`w-full pr-3 sm:pr-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.mobile ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
-                  style={{ 
-                    paddingLeft: `${window.innerWidth < 640 ? 12 + 16 + 4 + ((values.selectedCountry || getDefaultCountry()).dialCode.length * 6) + 4 : 12 + 20 + 8 + ((values.selectedCountry || getDefaultCountry()).dialCode.length * 8) + 8}px` 
-                  }}
-                  aria-invalid={!!errors.mobile} 
-                  aria-describedby={errors.mobile ? 'mobile-error' : undefined} 
-                />
+<input 
+  value={values.mobile} 
+  onChange={(e) => {
+    // Allow only numeric input
+    const numericValue = e.target.value.replace(/\D/g, '');
+    onChange('mobile', numericValue);
+  }} 
+  onBlur={(e) => onBlur && onBlur('mobile', e.target.value)} 
+  type="tel" 
+  inputMode="numeric"
+  pattern="[0-9]*"
+  placeholder={(values.selectedCountry || getDefaultCountry()).code === 'IN' ? "97854 42580" : "Enter mobile number"} 
+  className={`w-full pr-3 sm:pr-3 py-2 sm:py-2.5 text-sm sm:text-base border rounded-lg focus:outline-none focus:ring-2 ${errors.mobile ? 'border-red-500 focus:ring-red-600' : 'border-gray-300 focus:ring-blue-600'}`}
+  style={{ 
+    paddingLeft: `${window.innerWidth < 640 ? 12 + 16 + 4 + ((values.selectedCountry || getDefaultCountry()).dialCode.length * 6) + 4 : 12 + 20 + 8 + ((values.selectedCountry || getDefaultCountry()).dialCode.length * 8) + 8}px` 
+  }}
+  aria-invalid={!!errors.mobile} 
+  aria-describedby={errors.mobile ? 'mobile-error' : undefined} 
+/>
               </div>
               {errors.mobile && <p id="mobile-error" className="mt-1 text-xs sm:text-sm text-red-600">{errors.mobile}</p>}
             </div>
